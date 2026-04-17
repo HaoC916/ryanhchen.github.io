@@ -6,14 +6,14 @@ function Hero() {
       <div className="hero-badge">Open to software opportunities</div>
 
       <h1 className="hero-title">
-        Building backend systems
+        Building full-stack applications
         <br />
         and practical software.
       </h1>
 
       <p className="hero-description">
-        I am Ryan Chen, a computing science graduate student focused on backend
-        development, cloud systems, and data-driven applications. I enjoy
+        I am Ryan Chen, a computing science graduate student focused on full-stack
+        development, cloud systems, and big data. I enjoy
         building software that is reliable, clear, and useful.
       </p>
 
