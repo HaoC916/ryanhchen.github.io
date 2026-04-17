@@ -1,0 +1,62 @@
+.contact {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 100px;
+}
+
+.contact-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 32px;
+  background: white;
+}
+
+.contact-kicker {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contact-title {
+  margin: 0;
+  font-size: 36px;
+  color: #111827;
+}
+
+.contact-description {
+  margin-top: 16px;
+  max-width: 700px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.contact-links {
+  margin-top: 24px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  color: #111827;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .contact {
+    padding: 0 20px 70px;
+  }
+
+  .contact-title {
+    font-size: 30px;
+  }
+}
