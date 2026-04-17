@@ -1,12 +1,12 @@
 .hero {
-  padding: 100px 40px 72px;
+  padding: 40px 40px 64px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
 .hero-badge {
   display: inline-block;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border-radius: 999px;
   background-color: #f3f4f6;
   color: #374151;
@@ -16,36 +16,38 @@
 }
 
 .hero-title {
+  max-width: 1200px;
   font-size: 64px;
-  line-height: 1.08;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   margin: 0;
   color: #111827;
-  letter-spacing: -0.03em;
 }
 
 .hero-description {
   margin-top: 24px;
-  font-size: 20px;
-  line-height: 1.7;
+  max-width: 680px;
+  font-size: 22px;
+  line-height: 1.8;
   color: #4b5563;
-  max-width: 760px;
 }
 
 .hero-actions {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   margin-top: 36px;
   flex-wrap: wrap;
 }
 
 .hero-button {
   display: inline-block;
-  padding: 14px 24px;
+  padding: 15px 26px;
   border-radius: 999px;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .hero-button-primary {
@@ -60,16 +62,25 @@
   color: #111827;
 }
 
+.hero-button-primary:hover {
+  transform: translateY(-1px);
+}
+
+.hero-button-secondary:hover {
+  background-color: #f9fafb;
+}
+
 @media (max-width: 900px) {
   .hero {
-    padding: 80px 20px 56px;
+    padding: 40px 20px 24px;
   }
 
   .hero-title {
-    font-size: 44px;
+    font-size: 48px;
   }
 
   .hero-description {
     font-size: 18px;
+    line-height: 1.7;
   }
 }

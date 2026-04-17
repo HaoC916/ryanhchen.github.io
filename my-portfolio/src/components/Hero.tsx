@@ -3,18 +3,14 @@ import './Hero.css'
 function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="hero-badge">Open to software opportunities</div>
+      <div className="hero-badge">Open to summer co-op opportunities</div>
 
       <h1 className="hero-title">
-        Building full-stack applications
-        <br />
-        and practical software.
+        Building scalable backend systems.
       </h1>
 
       <p className="hero-description">
-        I am Ryan Chen, a computing science graduate student focused on full-stack
-        development, cloud systems, and big data. I enjoy
-        building software that is reliable, clear, and useful.
+        Focused on cloud infrastructure, distributed systems, and data engineering.
       </p>
 
       <div className="hero-actions">
