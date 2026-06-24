@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import './Intro.css'
 
-const greetings = ['Hello', '你好', 'Hola', 'Bonjour', '안녕하세요', 'Hello']
-
 type IntroProps = {
   onDone: () => void
 }
@@ -15,36 +13,27 @@ function prefersReducedMotion() {
 }
 
 function Intro({ onDone }: IntroProps) {
-  const [index, setIndex] = useState(0)
   const [leaving, setLeaving] = useState(false)
 
   useEffect(() => {
-    // Reduced motion: skip the cycle, just hold briefly then reveal.
-    if (prefersReducedMotion()) {
-      const timer = setTimeout(onDone, 500)
-      return () => clearTimeout(timer)
-    }
+    const reduce = prefersReducedMotion()
+    const hold = reduce ? 300 : 900
+    const slide = reduce ? 0 : 900
 
-    if (index < greetings.length - 1) {
-      const timer = setTimeout(() => setIndex((i) => i + 1), 200)
-      return () => clearTimeout(timer)
-    }
+    const leaveTimer = setTimeout(() => setLeaving(true), hold)
+    const doneTimer = setTimeout(onDone, hold + slide + 50)
 
-    // Last greeting reached -> hold, then slide the panel up.
-    const timer = setTimeout(() => setLeaving(true), 420)
-    return () => clearTimeout(timer)
-  }, [index, onDone])
+    return () => {
+      clearTimeout(leaveTimer)
+      clearTimeout(doneTimer)
+    }
+  }, [onDone])
 
   return (
-    <div
-      className={`intro${leaving ? ' intro-leaving' : ''}`}
-      onTransitionEnd={(event) => {
-        if (leaving && event.propertyName === 'transform') onDone()
-      }}
-    >
-      <span className="intro-word" key={index}>
+    <div className={`intro${leaving ? ' intro-leaving' : ''}`}>
+      <span className="intro-word">
         <span className="intro-dot" aria-hidden="true" />
-        {greetings[index]}
+        Hello
       </span>
     </div>
   )

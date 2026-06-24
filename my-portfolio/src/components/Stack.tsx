@@ -51,14 +51,10 @@ const stackItems: StackItem[] = [
   { name: 'Git/GitHub', icon: <SiGit />, tone: 'stack-pill-git' },
 ]
 
-// Offset the second row so the two lanes don't line up identically.
-const half = Math.ceil(stackItems.length / 2)
-const rowTwoItems = [...stackItems.slice(half), ...stackItems.slice(0, half)]
-
-function Row({ items, reverse }: { items: StackItem[]; reverse?: boolean }) {
+function Row({ items }: { items: StackItem[] }) {
   const loop = [...items, ...items]
   return (
-    <div className={`stack-track${reverse ? ' stack-track-reverse' : ''}`}>
+    <div className="stack-track">
       {loop.map((item, index) => (
         <div className={`stack-pill ${item.tone}`} key={`${item.name}-${index}`}>
           <span className="stack-pill-icon">{item.icon}</span>
@@ -127,7 +123,6 @@ function Stack() {
       <div className="stack-marquee">
         <div className="stack-tilt" ref={tiltRef}>
           <Row items={stackItems} />
-          <Row items={rowTwoItems} reverse />
         </div>
       </div>
     </section>
