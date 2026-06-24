@@ -116,8 +116,7 @@ function Stack() {
   return (
     <section className="stack" id="stack">
       <div className="stack-header">
-        <p className="stack-kicker">Tech I work with</p>
-        <h2 className="stack-title">Technology Stack</h2>
+        <h2 className="stack-title">Tech Stack</h2>
       </div>
 
       <div className="stack-marquee">

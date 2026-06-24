@@ -25,6 +25,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Offset anchor jumps so the sticky navbar never covers section titles. */
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+@media (max-width: 700px) {
+  section[id] {
+    scroll-margin-top: 132px;
+  }
+}
+
 body {
   margin: 0;
   min-width: 320px;

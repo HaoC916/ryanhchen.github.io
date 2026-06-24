@@ -1,27 +1,95 @@
 import './Contact.css'
+import { useEffect, useState } from 'react'
+import { FiMail, FiArrowUpRight, FiMapPin } from 'react-icons/fi'
+import { FaGithub } from 'react-icons/fa'
+
+function formatVancouverTime() {
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Vancouver',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(new Date())
+}
+
+function useLocalTime() {
+  const [time, setTime] = useState(formatVancouverTime)
+  useEffect(() => {
+    const id = setInterval(() => setTime(formatVancouverTime()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  return time
+}
 
 function Contact() {
+  const time = useLocalTime()
+
   return (
     <section className="contact" id="contact">
-      <div className="contact-card">
+      <div className="contact-aurora" aria-hidden="true" />
+
+      <div className="contact-inner">
         <p className="contact-kicker">Get in touch</p>
-        <h2 className="contact-title">Let’s connect.</h2>
+        <h2 className="contact-title">Let&rsquo;s connect.</h2>
         <p className="contact-description">
-          I’m currently working as a full-stack developer and always happy to
-          chat about web &amp; mobile projects, full-stack engineering, or just
+          I&rsquo;m currently working as a full-stack developer and always happy
+          to chat about web &amp; mobile projects, full-stack engineering, or just
           to connect.
         </p>
 
-        <div className="contact-links">
-          <a href="mailto:hca116@sfu.ca">hca116@sfu.ca</a>
+        <div className="contact-grid">
+          <a className="contact-card" href="mailto:hca116@sfu.ca">
+            <span className="contact-card-icon">
+              <FiMail />
+            </span>
+            <span className="contact-card-body">
+              <span className="contact-card-label">Email</span>
+              <span className="contact-card-value">hca116@sfu.ca</span>
+            </span>
+            <span className="contact-card-arrow">
+              <FiArrowUpRight />
+            </span>
+          </a>
+
           <a
+            className="contact-card"
             href="https://github.com/HaoC916"
             target="_blank"
             rel="noreferrer"
           >
-            github.com/HaoC916
+            <span className="contact-card-icon">
+              <FaGithub />
+            </span>
+            <span className="contact-card-body">
+              <span className="contact-card-label">GitHub</span>
+              <span className="contact-card-value">github.com/HaoC916</span>
+            </span>
+            <span className="contact-card-arrow">
+              <FiArrowUpRight />
+            </span>
           </a>
+
+          <div className="contact-now">
+            <span className="contact-now-status">
+              <span className="contact-now-dot" aria-hidden="true" />
+              Available for a chat
+            </span>
+            <span className="contact-now-time">{time}</span>
+            <span className="contact-now-place">
+              <FiMapPin />
+              Vancouver, Canada
+            </span>
+          </div>
         </div>
+
+        <a className="contact-cta" href="mailto:hca116@sfu.ca">
+          <span className="contact-cta-lead">Got a project in mind?</span>
+          <span className="contact-cta-link">
+            Let&rsquo;s talk
+            <FiArrowUpRight />
+          </span>
+        </a>
       </div>
     </section>
   )
