@@ -16,14 +16,6 @@
   letter-spacing: -0.02em;
 }
 
-.projects-subtitle {
-  margin-top: 14px;
-  max-width: 700px;
-  font-size: 18px;
-  line-height: 1.7;
-  color: #4b5563;
-}
-
 /* Sub-groups (Experience / Projects) inside the section. */
 .projects-group {
   margin-top: 44px;
@@ -225,10 +217,6 @@
 @media (max-width: 900px) {
   .projects {
     padding: 32px 20px 72px;
-  }
-
-  .projects-subtitle {
-    font-size: 17px;
   }
 
   .timeline-role {

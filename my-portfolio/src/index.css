@@ -41,16 +41,17 @@ body {
   min-width: 320px;
   color: #111827;
   overflow-x: hidden;
-  /* One continuous wash spanning the whole page so sections never read as
-     disconnected white blocks. */
+  /* One continuous colored wash spanning the whole page so every section —
+     hero, stack, projects, contact — shares a connected gradient instead of
+     reading as separate white blocks. */
   background-color: #fafaf9;
   background-image: linear-gradient(
     180deg,
-    rgba(186, 213, 255, 0.4) 0%,
-    rgba(250, 250, 249, 1) 16%,
-    rgba(250, 250, 249, 1) 70%,
-    rgba(196, 224, 255, 0.32) 86%,
-    rgba(200, 232, 214, 0.34) 100%
+    #e6efff 0%,
+    #ebf0fb 28%,
+    #efecfa 52%,
+    #e9f2f5 76%,
+    #e7f3ec 100%
   );
   background-repeat: no-repeat;
 }

@@ -30,7 +30,7 @@ const experience: Experience[] = [
   },
   {
     role: 'E-commerce Developer',
-    period: 'May 2024 - Dec 2024',
+    period: 'May 2024 - May 2026',
     summary:
       'Built and maintained Shopify storefronts, customizing themes to improve the online shopping experience.',
     impact:
@@ -95,10 +95,6 @@ function Projects() {
     <section className="projects" id="projects">
       <div className="projects-header">
         <h2 className="projects-title">Work &amp; Projects</h2>
-        <p className="projects-subtitle">
-          A mix of what I&rsquo;m building now and selected projects across
-          full-stack, cloud, and data engineering.
-        </p>
       </div>
 
       <div className="projects-group">
