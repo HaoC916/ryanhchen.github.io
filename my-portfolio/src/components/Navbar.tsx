@@ -5,8 +5,7 @@ function Navbar() {
     <header className="navbar">
       <div className="navbar-inner">
         <a className="navbar-brand" href="#top">
-          <span className="navbar-name">Ryan Chen</span>
-          <span className="navbar-role">Full-Stack Developer</span>
+          Ryan Chen
         </a>
 
         <nav className="navbar-links">

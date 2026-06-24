@@ -5,12 +5,12 @@
 }
 
 .projects-header {
-  margin-bottom: 28px;
+  margin-bottom: 8px;
 }
 
 .projects-title {
   margin: 0;
-  font-size: 40px;
+  font-size: clamp(28px, 3.4vw, 40px);
   line-height: 1.1;
   color: #111827;
   letter-spacing: -0.02em;
@@ -22,6 +22,107 @@
   font-size: 18px;
   line-height: 1.7;
   color: #4b5563;
+}
+
+/* Sub-groups (Experience / Projects) inside the section. */
+.projects-group {
+  margin-top: 44px;
+}
+
+.group-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 24px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+
+.group-title-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent, #2f6df6);
+}
+
+/* Experience timeline — distinct from the project cards. */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 34px 30px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* connecting line */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 20px;
+  bottom: -14px;
+  width: 2px;
+  background: rgba(17, 24, 39, 0.12);
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+/* node dot */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fafaf9;
+  border: 3px solid var(--accent, #2f6df6);
+}
+
+.timeline-period {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.timeline-role {
+  margin: 6px 0 0;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.timeline-summary {
+  margin-top: 10px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.timeline-impact {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #6b7280;
+}
+
+.timeline .project-tags {
+  margin-top: 16px;
 }
 
 .projects-grid {
@@ -126,12 +227,12 @@
     padding: 32px 20px 72px;
   }
 
-  .projects-title {
-    font-size: 34px;
-  }
-
   .projects-subtitle {
     font-size: 17px;
+  }
+
+  .timeline-role {
+    font-size: 22px;
   }
 
   .project-card {

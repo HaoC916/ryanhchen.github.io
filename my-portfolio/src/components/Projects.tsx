@@ -1,5 +1,13 @@
 import './Projects.css'
 
+type Experience = {
+  role: string
+  period: string
+  summary: string
+  impact: string
+  tags: string[]
+}
+
 type Project = {
   title: string
   period: string
@@ -10,9 +18,9 @@ type Project = {
   demoUrl?: string
 }
 
-const projects: Project[] = [
+const experience: Experience[] = [
   {
-    title: 'Full-Stack Developer — Summer Co-op',
+    role: 'Full-Stack Developer',
     period: 'May 2026 - Present',
     summary:
       'Building and shipping production features across web and mobile as part of an engineering team.',
@@ -20,6 +28,18 @@ const projects: Project[] = [
       'Working end-to-end with React, React Native, Node.js, and Express.js on real user-facing products.',
     tags: ['React', 'React Native', 'Node.js', 'Express.js', 'PostgreSQL'],
   },
+  {
+    role: 'E-commerce Developer',
+    period: 'May 2024 - Dec 2024',
+    summary:
+      'Built and maintained Shopify storefronts, customizing themes to improve the online shopping experience.',
+    impact:
+      'Developed custom Shopify Liquid sections and small Python scripts to automate product imports and order reports.',
+    tags: ['HTML/CSS', 'JavaScript', 'Shopify Liquid', 'Python'],
+  },
+]
+
+const projects: Project[] = [
   {
     title: 'Vancouver Land Value Prediction System',
     period: 'Jan 2026 - Apr 2026',
@@ -45,7 +65,7 @@ const projects: Project[] = [
       'A large-scale political sentiment analysis pipeline built on Reddit data to study online sentiment during the 2025 Canada election.',
     impact:
       'Reduced 225GB+ raw Reddit data and 1B+ comments into a compact political text dataset using Python streaming, Zstandard, and Apache Spark, then analyzed sentiment trends against polling signals.',
-    tags: ['Python', 'Apache Spark', 'ETL', 'VADER', 'Transformer']
+    tags: ['Python', 'Apache Spark', 'ETL', 'VADER', 'Transformer'],
   },
   {
     title: 'Course Planner',
@@ -58,6 +78,18 @@ const projects: Project[] = [
   },
 ]
 
+function Tags({ tags }: { tags: string[] }) {
+  return (
+    <div className="project-tags">
+      {tags.map((tag) => (
+        <span className="project-tag" key={tag}>
+          {tag}
+        </span>
+      ))}
+    </div>
+  )
+}
+
 function Projects() {
   return (
     <section className="projects" id="projects">
@@ -69,50 +101,70 @@ function Projects() {
         </p>
       </div>
 
-      <div className="projects-grid">
-        {projects.map((project) => (
-          <article className="project-card" key={project.title}>
-            <div className="project-card-top">
-              <p className="project-card-period">{project.period}</p>
+      <div className="projects-group">
+        <h3 className="group-title">
+          <span className="group-title-dot" aria-hidden="true" />
+          Experience
+        </h3>
 
-              <div className="project-card-links">
-                {project.codeUrl && (
-                  <a
-                    className="project-link"
-                    href={project.codeUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Code
-                  </a>
-                )}
+        <ol className="timeline">
+          {experience.map((exp) => (
+            <li className="timeline-item" key={exp.role}>
+              <p className="timeline-period">{exp.period}</p>
+              <h4 className="timeline-role">{exp.role}</h4>
+              <p className="timeline-summary">{exp.summary}</p>
+              <p className="timeline-impact">{exp.impact}</p>
+              <Tags tags={exp.tags} />
+            </li>
+          ))}
+        </ol>
+      </div>
 
-                {project.demoUrl && (
-                  <a
-                    className="project-link"
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Demo
-                  </a>
-                )}
+      <div className="projects-group">
+        <h3 className="group-title">
+          <span className="group-title-dot" aria-hidden="true" />
+          Projects
+        </h3>
+
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <article className="project-card" key={project.title}>
+              <div className="project-card-top">
+                <p className="project-card-period">{project.period}</p>
+
+                <div className="project-card-links">
+                  {project.codeUrl && (
+                    <a
+                      className="project-link"
+                      href={project.codeUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Code
+                    </a>
+                  )}
+
+                  {project.demoUrl && (
+                    <a
+                      className="project-link"
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Demo
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <h3 className="project-card-title">{project.title}</h3>
-            <p className="project-card-summary">{project.summary}</p>
-            <p className="project-card-impact">{project.impact}</p>
+              <h4 className="project-card-title">{project.title}</h4>
+              <p className="project-card-summary">{project.summary}</p>
+              <p className="project-card-impact">{project.impact}</p>
 
-            <div className="project-tags">
-              {project.tags.map((tag) => (
-                <span className="project-tag" key={tag}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
+              <Tags tags={project.tags} />
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )

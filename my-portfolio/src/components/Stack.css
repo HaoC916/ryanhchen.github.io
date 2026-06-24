@@ -12,8 +12,8 @@
 
 .stack-title {
   margin: 0;
-  font-size: 34px;
-  line-height: 1.15;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.1;
   color: #111827;
   letter-spacing: -0.02em;
 }
@@ -23,6 +23,21 @@
   overflow: hidden;
   width: 100%;
   padding: 68px 0;
+  /* Fade the looping edges to transparent so it works on any background. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
 }
 
 /* Wrapper that the scroll-velocity tilt is applied to (via JS). */
@@ -83,27 +98,6 @@
 
 .stack-marquee:hover .stack-track {
   animation-play-state: paused;
-}
-
-.stack-marquee::before,
-.stack-marquee::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 120px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.stack-marquee::before {
-  left: 0;
-  background: linear-gradient(to right, #fafaf9 0%, rgba(250, 250, 249, 0) 100%);
-}
-
-.stack-marquee::after {
-  right: 0;
-  background: linear-gradient(to left, #fafaf9 0%, rgba(250, 250, 249, 0) 100%);
 }
 
 /* color themes */
@@ -206,10 +200,6 @@
     padding: 0 24px;
   }
 
-  .stack-title {
-    font-size: 30px;
-  }
-
   .stack-marquee {
     padding: 56px 0;
   }
@@ -234,10 +224,6 @@
     padding: 0 20px;
   }
 
-  .stack-title {
-    font-size: 28px;
-  }
-
   .stack-marquee {
     padding: 46px 0;
   }
@@ -259,10 +245,5 @@
 
   .stack-pill-text {
     font-size: 19px;
-  }
-
-  .stack-marquee::before,
-  .stack-marquee::after {
-    width: 64px;
   }
 }
