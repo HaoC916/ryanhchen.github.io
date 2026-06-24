@@ -1,6 +1,6 @@
 import './Contact.css'
 import { useEffect, useState } from 'react'
-import { FiMail, FiArrowUpRight, FiMapPin } from 'react-icons/fi'
+import { FiMail, FiArrowUpRight, FiArrowUp, FiMapPin } from 'react-icons/fi'
 import { FaGithub } from 'react-icons/fa'
 
 function formatVancouverTime() {
@@ -83,13 +83,15 @@ function Contact() {
           </div>
         </div>
 
-        <a className="contact-cta" href="mailto:hca116@sfu.ca">
-          <span className="contact-cta-lead">Got a project in mind?</span>
-          <span className="contact-cta-link">
-            Let&rsquo;s talk
-            <FiArrowUpRight />
+        <footer className="contact-foot">
+          <span className="contact-foot-copy">
+            © {new Date().getFullYear()} Ryan Chen · Built with React
           </span>
-        </a>
+          <a className="contact-foot-top" href="#top">
+            Back to top
+            <FiArrowUp />
+          </a>
+        </footer>
       </div>
     </section>
   )
