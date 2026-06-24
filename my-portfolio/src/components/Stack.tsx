@@ -1,4 +1,5 @@
 import './Stack.css'
+import { useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
 
 import {
@@ -6,6 +7,7 @@ import {
   SiReact,
   SiTypescript,
   SiNodedotjs,
+  SiExpress,
   SiDocker,
   SiPostgresql,
   SiGooglecloud,
@@ -14,6 +16,8 @@ import {
   SiMongodb,
   SiCplusplus,
 } from 'react-icons/si'
+
+import { TbBrandReactNative } from 'react-icons/tb'
 
 import {
   FaJava,
@@ -32,9 +36,11 @@ const stackItems: StackItem[] = [
   { name: 'Spring Boot', icon: <FaLeaf />, tone: 'stack-pill-spring' },
   { name: 'Python', icon: <SiPython />, tone: 'stack-pill-python' },
   { name: 'C/C++', icon: <SiCplusplus />, tone: 'stack-pill-cpp' },
-  { name: 'React', icon: <SiReact />, tone: 'stack-pill-react' },
   { name: 'TypeScript', icon: <SiTypescript />, tone: 'stack-pill-ts' },
+  { name: 'React', icon: <SiReact />, tone: 'stack-pill-react' },
+  { name: 'React Native', icon: <TbBrandReactNative />, tone: 'stack-pill-rn' },
   { name: 'Node.js', icon: <SiNodedotjs />, tone: 'stack-pill-node' },
+  { name: 'Express.js', icon: <SiExpress />, tone: 'stack-pill-express' },
   { name: 'REST APIs', icon: <span className="stack-text-icon">API</span>, tone: 'stack-pill-api' },
   { name: 'Docker', icon: <SiDocker />, tone: 'stack-pill-docker' },
   { name: 'PostgreSQL', icon: <SiPostgresql />, tone: 'stack-pill-postgres' },
@@ -45,23 +51,83 @@ const stackItems: StackItem[] = [
   { name: 'Git/GitHub', icon: <SiGit />, tone: 'stack-pill-git' },
 ]
 
+// Offset the second row so the two lanes don't line up identically.
+const half = Math.ceil(stackItems.length / 2)
+const rowTwoItems = [...stackItems.slice(half), ...stackItems.slice(0, half)]
+
+function Row({ items, reverse }: { items: StackItem[]; reverse?: boolean }) {
+  const loop = [...items, ...items]
+  return (
+    <div className={`stack-track${reverse ? ' stack-track-reverse' : ''}`}>
+      {loop.map((item, index) => (
+        <div className={`stack-pill ${item.tone}`} key={`${item.name}-${index}`}>
+          <span className="stack-pill-icon">{item.icon}</span>
+          <span className="stack-pill-text">{item.name}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function Stack() {
-  const loopItems = [...stackItems, ...stackItems]
+  const tiltRef = useRef<HTMLDivElement>(null)
+
+  // Tilt the marquee based on scroll velocity + direction, easing back to flat.
+  useEffect(() => {
+    const el = tiltRef.current
+    if (!el) return
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) return
+
+    let velocity = 0
+    let lastY = window.scrollY
+    let frame = 0
+    let running = false
+
+    const render = () => {
+      velocity *= 0.9
+      const rotate = Math.max(-3.5, Math.min(3.5, velocity * 0.22))
+      const skew = Math.max(-9, Math.min(9, velocity * 0.55))
+      el.style.transform = `rotate(${rotate}deg) skewX(${skew}deg)`
+
+      if (Math.abs(velocity) > 0.05) {
+        frame = requestAnimationFrame(render)
+      } else {
+        el.style.transform = 'rotate(0deg) skewX(0deg)'
+        running = false
+      }
+    }
+
+    const onScroll = () => {
+      const y = window.scrollY
+      velocity += y - lastY
+      velocity = Math.max(-60, Math.min(60, velocity))
+      lastY = y
+      if (!running) {
+        running = true
+        frame = requestAnimationFrame(render)
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(frame)
+    }
+  }, [])
 
   return (
     <section className="stack" id="stack">
       <div className="stack-header">
+        <p className="stack-kicker">Tech I work with</p>
         <h2 className="stack-title">Technology Stack</h2>
       </div>
 
       <div className="stack-marquee">
-        <div className="stack-track">
-          {loopItems.map((item, index) => (
-            <div className={`stack-pill ${item.tone}`} key={`${item.name}-${index}`}>
-              <span className="stack-pill-icon">{item.icon}</span>
-              <span className="stack-pill-text">{item.name}</span>
-            </div>
-          ))}
+        <div className="stack-tilt" ref={tiltRef}>
+          <Row items={stackItems} />
+          <Row items={rowTwoItems} reverse />
         </div>
       </div>
     </section>

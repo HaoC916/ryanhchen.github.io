@@ -5,10 +5,12 @@ function Navbar() {
     <header className="navbar">
       <div className="navbar-inner">
         <a className="navbar-brand" href="#top">
-          Ryan Chen
+          <span className="navbar-name">Ryan Chen</span>
+          <span className="navbar-role">Full-Stack Developer</span>
         </a>
 
         <nav className="navbar-links">
+          <a href="#stack">Stack</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
           <a

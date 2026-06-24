@@ -7,8 +7,9 @@ function Contact() {
         <p className="contact-kicker">Get in touch</p>
         <h2 className="contact-title">Let’s connect.</h2>
         <p className="contact-description">
-          I am currently looking for software opportunities in backend,
-          cloud, and data-related roles.
+          I’m currently working as a full-stack developer and always happy to
+          chat about web &amp; mobile projects, full-stack engineering, or just
+          to connect.
         </p>
 
         <div className="contact-links">

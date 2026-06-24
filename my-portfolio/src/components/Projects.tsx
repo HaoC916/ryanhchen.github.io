@@ -12,6 +12,15 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: 'Full-Stack Developer — Summer Co-op',
+    period: 'May 2026 - Present',
+    summary:
+      'Building and shipping production features across web and mobile as part of an engineering team.',
+    impact:
+      'Working end-to-end with React, React Native, Node.js, and Express.js on real user-facing products.',
+    tags: ['React', 'React Native', 'Node.js', 'Express.js', 'PostgreSQL'],
+  },
+  {
     title: 'Vancouver Land Value Prediction System',
     period: 'Jan 2026 - Apr 2026',
     summary:
@@ -53,7 +62,11 @@ function Projects() {
   return (
     <section className="projects" id="projects">
       <div className="projects-header">
-        <h2 className="projects-title">Projects</h2>
+        <h2 className="projects-title">Work &amp; Projects</h2>
+        <p className="projects-subtitle">
+          A mix of what I&rsquo;m building now and selected projects across
+          full-stack, cloud, and data engineering.
+        </p>
       </div>
 
       <div className="projects-grid">

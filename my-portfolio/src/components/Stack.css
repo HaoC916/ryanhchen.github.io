@@ -1,11 +1,22 @@
 .stack {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 24px 40px 40px;
+  padding: 24px 0 48px;
 }
 
 .stack-header {
-  margin-bottom: 32px;
+  margin: 0 auto 24px;
+  padding: 0 40px;
+  max-width: 1100px;
+}
+
+.stack-kicker {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .stack-title {
@@ -20,7 +31,16 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 8px 0 4px;
+  padding: 52px 0;
+}
+
+/* Wrapper that the scroll-velocity tilt is applied to (via JS). */
+.stack-tilt {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  transform-origin: center;
+  will-change: transform;
 }
 
 .stack-track {
@@ -28,7 +48,12 @@
   align-items: center;
   gap: 20px;
   width: max-content;
-  animation: stack-scroll 26s linear infinite;
+  animation: stack-scroll 28s linear infinite;
+}
+
+.stack-track-reverse {
+  animation-direction: reverse;
+  animation-duration: 34s;
 }
 
 .stack-pill {
@@ -82,7 +107,7 @@
   content: '';
   position: absolute;
   top: 0;
-  width: 100px;
+  width: 120px;
   height: 100%;
   z-index: 2;
   pointer-events: none;
@@ -124,6 +149,11 @@
   color: #0f7ea8;
 }
 
+.stack-pill-rn {
+  background: #e9f3ff;
+  color: #1f6feb;
+}
+
 .stack-pill-ts {
   background: #eaf0ff;
   color: #355ebf;
@@ -132,6 +162,11 @@
 .stack-pill-node {
   background: #edf8eb;
   color: #2f7d32;
+}
+
+.stack-pill-express {
+  background: #eef0f3;
+  color: #2b3138;
 }
 
 .stack-pill-api {
@@ -184,8 +219,8 @@
 }
 
 @media (max-width: 1100px) {
-  .stack {
-    padding: 8px 24px 56px;
+  .stack-header {
+    padding: 0 24px;
   }
 
   .stack-title {
@@ -208,17 +243,25 @@
 }
 
 @media (max-width: 768px) {
-  .stack {
-    padding: 8px 20px 48px;
+  .stack-header {
+    padding: 0 20px;
   }
 
   .stack-title {
     font-size: 28px;
   }
 
+  .stack-marquee {
+    padding: 40px 0;
+  }
+
   .stack-track {
     gap: 16px;
-    animation-duration: 22s;
+    animation-duration: 24s;
+  }
+
+  .stack-track-reverse {
+    animation-duration: 28s;
   }
 
   .stack-pill {
