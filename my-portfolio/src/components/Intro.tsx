@@ -31,10 +31,7 @@ function Intro({ onDone }: IntroProps) {
 
   return (
     <div className={`intro${leaving ? ' intro-leaving' : ''}`}>
-      <span className="intro-word">
-        <span className="intro-dot" aria-hidden="true" />
-        Hello
-      </span>
+      <span className="intro-word">Hello</span>
     </div>
   )
 }

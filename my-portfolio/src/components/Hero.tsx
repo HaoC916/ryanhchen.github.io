@@ -1,5 +1,4 @@
 import './Hero.css'
-import heroPortrait from '../assets/hero.png'
 
 function Hero() {
   return (
@@ -7,12 +6,7 @@ function Hero() {
       <div className="hero-glow" aria-hidden="true" />
 
       <h1 className="hero-title">
-        <span className="hero-line">
-          Hi, I am Ryan
-          <span className="hero-avatar">
-            <img src={heroPortrait} alt="Portrait of Ryan Chen" />
-          </span>
-        </span>
+        <span className="hero-line">Hi, I am Ryan</span>
         <span className="hero-line">A Full-Stack Developer</span>
       </h1>
 
