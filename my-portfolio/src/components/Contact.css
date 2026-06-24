@@ -11,27 +11,30 @@
   overflow: hidden;
 }
 
-/* Animated aurora glow for some life behind the contact content. */
+/* Animated aurora glow for some life behind the contact content. The whole
+   layer is faded out toward its edges with a mask so it blends into the page
+   wash instead of showing a hard clipped boundary. */
 .contact-aurora {
   position: absolute;
-  inset: -20% -10% auto -10%;
-  height: 80%;
+  inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(40% 50% at 20% 30%, rgba(135, 178, 255, 0.4), transparent 70%),
-    radial-gradient(40% 45% at 80% 20%, rgba(168, 226, 196, 0.4), transparent 70%),
-    radial-gradient(45% 50% at 60% 70%, rgba(214, 196, 255, 0.38), transparent 70%);
-  filter: blur(20px);
+    radial-gradient(42% 42% at 18% 30%, rgba(135, 178, 255, 0.4), transparent 72%),
+    radial-gradient(40% 40% at 82% 22%, rgba(168, 226, 196, 0.4), transparent 72%),
+    radial-gradient(48% 48% at 62% 66%, rgba(214, 196, 255, 0.38), transparent 72%);
+  filter: blur(26px);
+  -webkit-mask-image: radial-gradient(78% 80% at 50% 42%, #000 48%, transparent 100%);
+  mask-image: radial-gradient(78% 80% at 50% 42%, #000 48%, transparent 100%);
   animation: contact-drift 14s ease-in-out infinite alternate;
 }
 
 @keyframes contact-drift {
   from {
-    transform: translate3d(-2%, -1%, 0) scale(1);
+    transform: translate3d(-1.5%, -1%, 0) scale(1);
   }
   to {
-    transform: translate3d(3%, 2%, 0) scale(1.08);
+    transform: translate3d(2%, 1.5%, 0) scale(1.05);
   }
 }
 
