@@ -19,7 +19,9 @@ function App() {
   }, [introDone])
 
   // Safety net: never leave the overlay stuck if a timer/transition is missed.
+  // Also force the view to the top so a refresh always starts at the hero.
   useEffect(() => {
+    window.scrollTo(0, 0)
     const timer = setTimeout(() => setIntroDone(true), 4000)
     return () => clearTimeout(timer)
   }, [])

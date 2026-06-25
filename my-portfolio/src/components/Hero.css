@@ -56,7 +56,9 @@
 
 .hero-title {
   margin: 0;
-  font-size: clamp(30px, 7.4vw, 90px);
+  /* Min kept low enough that "A Full-Stack Developer" stays on one line down
+     to ~320px wide screens without clipping. */
+  font-size: clamp(26px, 7.4vw, 90px);
   line-height: 1.05;
   letter-spacing: -0.045em;
   font-weight: 800;

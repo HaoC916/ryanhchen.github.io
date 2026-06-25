@@ -1,4 +1,5 @@
 import './Projects.css'
+import Reveal from './Reveal'
 
 type Experience = {
   role: string
@@ -93,9 +94,11 @@ function Tags({ tags }: { tags: string[] }) {
 function Projects() {
   return (
     <section className="projects" id="projects">
-      <div className="projects-header">
-        <h2 className="projects-title">Work &amp; Projects</h2>
-      </div>
+      <Reveal>
+        <div className="projects-header">
+          <h2 className="projects-title">Work &amp; Projects</h2>
+        </div>
+      </Reveal>
 
       <div className="projects-group">
         <h3 className="group-title">

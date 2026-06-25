@@ -2,6 +2,7 @@ import './Contact.css'
 import { useEffect, useState } from 'react'
 import { FiMail, FiArrowUpRight, FiArrowUp, FiMapPin } from 'react-icons/fi'
 import { FaGithub } from 'react-icons/fa'
+import Reveal from './Reveal'
 
 function formatVancouverTime() {
   return new Intl.DateTimeFormat('en-US', {
@@ -30,13 +31,15 @@ function Contact() {
       <div className="contact-aurora" aria-hidden="true" />
 
       <div className="contact-inner">
-        <p className="contact-kicker">Get in touch</p>
-        <h2 className="contact-title">Let&rsquo;s connect.</h2>
-        <p className="contact-description">
-          I&rsquo;m currently working as a full-stack developer and always happy
-          to chat about web &amp; mobile projects, full-stack engineering, or just
-          to connect.
-        </p>
+        <Reveal>
+          <p className="contact-kicker">Get in touch</p>
+          <h2 className="contact-title">Let&rsquo;s connect.</h2>
+          <p className="contact-description">
+            I&rsquo;m currently working as a full-stack developer and always happy
+            to chat about web &amp; mobile projects, full-stack engineering, or
+            just to connect.
+          </p>
+        </Reveal>
 
         <div className="contact-grid">
           <a className="contact-card" href="mailto:hca116@sfu.ca">
