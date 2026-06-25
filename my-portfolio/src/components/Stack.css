@@ -54,32 +54,66 @@
   animation: stack-scroll 28s linear infinite;
 }
 
+/* Frosted-glass pills with vivid, brand-colored icons for a cleaner,
+   more high-end / tech feel than flat pastel chips. */
 .stack-pill {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
   min-height: 104px;
-  padding: 26px 46px;
-  border-radius: 30px;
+  padding: 24px 44px;
+  border-radius: 26px;
   white-space: nowrap;
-  border: 1px solid rgba(17, 24, 39, 0.06);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  color: #1f2937;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(17, 24, 39, 0.07);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Faint glow tinted by the icon color, sitting behind the pill. */
+.stack-pill::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  bottom: -10px;
+  width: 56px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--icon, #2f6df6);
+  opacity: 0.18;
+  filter: blur(16px);
+  z-index: -1;
+}
+
+.stack-pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(17, 24, 39, 0.14);
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 .stack-pill-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 50px;
+  font-size: 48px;
   line-height: 1;
   flex-shrink: 0;
+  color: var(--icon, #2f6df6);
+  filter: drop-shadow(0 3px 8px rgba(15, 23, 42, 0.12));
 }
 
 .stack-pill-text {
   font-size: 27px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .stack-text-icon {
@@ -91,8 +125,8 @@
   font-size: 19px;
   font-weight: 800;
   border-radius: 13px;
-  background: rgba(17, 24, 39, 0.08);
-  color: currentColor;
+  background: color-mix(in srgb, var(--icon, #2f6df6) 14%, transparent);
+  color: var(--icon, #2f6df6);
   padding: 0 10px;
 }
 
@@ -100,90 +134,57 @@
   animation-play-state: paused;
 }
 
-/* color themes */
+/* Per-tech icon colors (vivid brand-ish tones that pop on glass). */
 .stack-pill-java {
-  background: #f8efe3;
-  color: #9a5a16;
+  --icon: #d97706;
 }
-
 .stack-pill-cpp {
-  background: #eef4ff;
-  color: #3b5fc7;
+  --icon: #3b6fb5;
 }
-
 .stack-pill-spring {
-  background: #e8f6ea;
-  color: #2f7d32;
+  --icon: #4f9e36;
 }
-
 .stack-pill-python {
-  background: #eef3ff;
-  color: #355c9a;
+  --icon: #3776ab;
 }
-
 .stack-pill-react {
-  background: #e7f7ff;
-  color: #0f7ea8;
+  --icon: #149eca;
 }
-
 .stack-pill-rn {
-  background: #e9f3ff;
-  color: #1f6feb;
+  --icon: #2f6feb;
 }
-
 .stack-pill-ts {
-  background: #eaf0ff;
-  color: #355ebf;
+  --icon: #3178c6;
 }
-
 .stack-pill-node {
-  background: #edf8eb;
-  color: #2f7d32;
+  --icon: #3f9142;
 }
-
 .stack-pill-express {
-  background: #eef0f3;
-  color: #2b3138;
+  --icon: #4b5563;
 }
-
 .stack-pill-api {
-  background: #edf2ff;
-  color: #5064c9;
+  --icon: #5b64d6;
 }
-
 .stack-pill-docker {
-  background: #e8f3ff;
-  color: #1662c4;
+  --icon: #1f86d6;
 }
-
 .stack-pill-postgres {
-  background: #eef1ff;
-  color: #4c5bb5;
+  --icon: #3a5a8c;
 }
-
 .stack-pill-mongo {
-  background: #ebf7ee;
-  color: #2f7d32;
+  --icon: #3f9142;
 }
-
 .stack-pill-spark {
-  background: #fff1ea;
-  color: #c45a1c;
+  --icon: #d4581f;
 }
-
 .stack-pill-aws {
-  background: #fff3dd;
-  color: #a56400;
+  --icon: #e1820a;
 }
-
 .stack-pill-gcp {
-  background: #eef7ff;
-  color: #1f6fd1;
+  --icon: #2f7de0;
 }
-
 .stack-pill-git {
-  background: #fff0ea;
-  color: #c24a1c;
+  --icon: #de4c2a;
 }
 
 @keyframes stack-scroll {

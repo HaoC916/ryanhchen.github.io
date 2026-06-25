@@ -161,15 +161,25 @@
 }
 
 .contact-now {
+  margin-top: 16px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 24px 26px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 28px;
+  flex-wrap: wrap;
+  padding: 20px 28px;
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(17, 24, 39, 0.08);
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   color: #111827;
+}
+
+.contact-now-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .contact-now-status {

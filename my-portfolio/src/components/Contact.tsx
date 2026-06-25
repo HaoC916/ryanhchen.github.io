@@ -1,7 +1,7 @@
 import './Contact.css'
 import { useEffect, useState } from 'react'
 import { FiMail, FiArrowUpRight, FiArrowUp, FiMapPin } from 'react-icons/fi'
-import { FaGithub } from 'react-icons/fa'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import Reveal from './Reveal'
 
 function formatVancouverTime() {
@@ -73,17 +73,37 @@ function Contact() {
             </span>
           </a>
 
-          <div className="contact-now">
+          <a
+            className="contact-card"
+            href="https://www.linkedin.com/in/hello-ryan"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="contact-card-icon">
+              <FaLinkedin />
+            </span>
+            <span className="contact-card-body">
+              <span className="contact-card-label">LinkedIn</span>
+              <span className="contact-card-value">in/hello-ryan</span>
+            </span>
+            <span className="contact-card-arrow">
+              <FiArrowUpRight />
+            </span>
+          </a>
+        </div>
+
+        <div className="contact-now">
+          <div className="contact-now-main">
             <span className="contact-now-status">
               <span className="contact-now-dot" aria-hidden="true" />
               Available for a chat
             </span>
-            <span className="contact-now-time">{time}</span>
             <span className="contact-now-place">
               <FiMapPin />
               Vancouver, Canada
             </span>
           </div>
+          <span className="contact-now-time">{time}</span>
         </div>
 
         <footer className="contact-foot">

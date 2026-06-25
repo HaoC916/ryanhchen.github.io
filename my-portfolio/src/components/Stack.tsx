@@ -84,8 +84,8 @@ function Stack() {
 
     const render = () => {
       velocity *= 0.9
-      const rotate = Math.max(-3.5, Math.min(3.5, velocity * 0.22))
-      const skew = Math.max(-9, Math.min(9, velocity * 0.55))
+      const rotate = Math.max(-2.2, Math.min(2.2, velocity * 0.13))
+      const skew = Math.max(-5.5, Math.min(5.5, velocity * 0.3))
       el.style.transform = `rotate(${rotate}deg) skewX(${skew}deg)`
 
       if (Math.abs(velocity) > 0.05) {
