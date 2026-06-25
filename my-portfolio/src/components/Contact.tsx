@@ -41,7 +41,6 @@ function Contact() {
           </p>
         </Reveal>
 
-        <div className="contact-body">
         <div className="contact-grid">
           <a className="contact-card" href="mailto:hca116@sfu.ca">
             <span className="contact-card-icon">
@@ -113,7 +112,6 @@ function Contact() {
               👋
             </span>
           </a>
-        </div>
         </div>
 
         <footer className="contact-foot">
