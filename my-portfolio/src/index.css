@@ -23,6 +23,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 /* Offset anchor jumps so the sticky navbar never covers section titles. */
@@ -40,7 +41,7 @@ body {
   margin: 0;
   min-width: 320px;
   color: #111827;
-  overflow-x: hidden;
+  overflow-x: clip;
   /* One continuous colored wash spanning the whole page so every section —
      hero, stack, projects, contact — shares a connected gradient instead of
      reading as separate white blocks. */
