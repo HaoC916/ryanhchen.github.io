@@ -56,6 +56,9 @@
 
 /* Frosted-glass pills with vivid, brand-colored icons for a cleaner,
    more high-end / tech feel than flat pastel chips. */
+/* Translucent (not backdrop-blurred) pills: the marquee sits over a smooth
+   gradient, so a plain rgba background looks the same as a blur but costs a
+   fraction to animate across ~34 elements. */
 .stack-pill {
   position: relative;
   display: inline-flex;
@@ -66,35 +69,18 @@
   border-radius: 26px;
   white-space: nowrap;
   color: #1f2937;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(17, 24, 39, 0.07);
-  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: border-color 0.25s ease, box-shadow 0.25s ease,
     transform 0.25s ease;
-}
-
-/* Faint glow tinted by the icon color, sitting behind the pill. */
-.stack-pill::after {
-  content: '';
-  position: absolute;
-  left: 16px;
-  bottom: -10px;
-  width: 56px;
-  height: 26px;
-  border-radius: 999px;
-  background: var(--icon, #2f6df6);
-  opacity: 0.18;
-  filter: blur(16px);
-  z-index: -1;
 }
 
 .stack-pill:hover {
   transform: translateY(-2px);
   border-color: rgba(17, 24, 39, 0.14);
-  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12),
+  box-shadow: 0 20px 42px rgba(15, 23, 42, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
@@ -106,7 +92,6 @@
   line-height: 1;
   flex-shrink: 0;
   color: var(--icon, #2f6df6);
-  filter: drop-shadow(0 3px 8px rgba(15, 23, 42, 0.12));
 }
 
 .stack-pill-text {

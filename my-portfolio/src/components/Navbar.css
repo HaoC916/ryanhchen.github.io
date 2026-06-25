@@ -12,8 +12,8 @@
     rgba(223, 219, 248, 0.18) 48%,
     rgba(201, 233, 216, 0.28) 100%
   );
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(140%);
   border-bottom: 1px solid rgba(17, 24, 39, 0.05);
   /* Soft, fading shadow separates it from content without a hard line. */
   box-shadow: 0 10px 30px -22px rgba(30, 58, 95, 0.55);
