@@ -109,7 +109,7 @@ function Tags({ tags }: { tags: string[] }) {
 
 function Projects() {
   return (
-    <section className="projects" id="projects">
+    <section className="projects" id="work">
       <Reveal>
         <div className="projects-header">
           <h2 className="projects-title title-shine">Work &amp; Projects</h2>
@@ -135,7 +135,7 @@ function Projects() {
         </ol>
       </div>
 
-      <div className="projects-group">
+      <div className="projects-group" id="projects">
         <h3 className="group-title">
           <span className="group-title-dot" aria-hidden="true" />
           Projects

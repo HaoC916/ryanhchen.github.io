@@ -27,14 +27,23 @@ html {
 }
 
 /* Offset anchor jumps so the sticky navbar clears section titles, with only a
-   small gap (≈ navbar height). */
+   small gap (≈ navbar height). Section titles sit inside the section padding;
+   the Projects sub-group has none, so it gets a little extra offset. */
 section[id] {
   scroll-margin-top: 78px;
+}
+
+.projects-group[id] {
+  scroll-margin-top: 104px;
 }
 
 @media (max-width: 700px) {
   section[id] {
     scroll-margin-top: 96px;
+  }
+
+  .projects-group[id] {
+    scroll-margin-top: 122px;
   }
 }
 
