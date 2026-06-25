@@ -12,30 +12,30 @@ type Experience = {
 type Project = {
   title: string
   period: string
-  summary: string
-  impact: string
+  category: string
+  tone: string
+  blurb: string
+  highlights: string[]
   tags: string[]
-  codeUrl?: string
-  demoUrl?: string
 }
 
 const experience: Experience[] = [
   {
     role: 'Full-Stack Developer',
-    period: 'May 2026 - Present',
+    period: 'May 2026 – Present',
     summary:
-      'Building and shipping production features across web and mobile as part of an engineering team.',
+      'Shipping production features across web and mobile alongside the engineering team — the kind real users actually touch.',
     impact:
-      'Working end-to-end with React, React Native, Node.js, and Express.js on real user-facing products.',
+      'Working end to end: React and React Native on the front, Node.js and Express APIs on the back, PostgreSQL underneath.',
     tags: ['React', 'React Native', 'Node.js', 'Express.js', 'PostgreSQL'],
   },
   {
     role: 'E-commerce Developer',
-    period: 'May 2024 - May 2026',
+    period: 'May 2024 – May 2026',
     summary:
-      'Built and maintained Shopify storefronts, customizing themes to improve the online shopping experience.',
+      'Built and looked after Shopify storefronts, tuning themes until the shopping experience actually felt good to use.',
     impact:
-      'Developed custom Shopify Liquid sections and small Python scripts to automate product imports and order reports.',
+      'Wrote custom Shopify Liquid sections and small Python scripts to automate product imports and order reports — less manual busywork for the team.',
     tags: ['HTML/CSS', 'JavaScript', 'Shopify Liquid', 'Python'],
   },
 ]
@@ -43,38 +43,54 @@ const experience: Experience[] = [
 const projects: Project[] = [
   {
     title: 'Vancouver Land Value Prediction System',
-    period: 'Jan 2026 - Apr 2026',
-    summary:
-      'A full-stack property valuation system for Vancouver land value prediction using public datasets and machine learning.',
-    impact:
-      'Built a React frontend and REST API workflow on top of 1.5M+ property records.',
+    period: 'Jan 2026 – Apr 2026',
+    category: 'Full-Stack · ML',
+    tone: 'fullstack',
+    blurb:
+      'Punch in a Vancouver address and get back what the land underneath is likely worth — backed by real municipal data and a model that learned from it.',
+    highlights: [
+      'Cleaned and reshaped 1.5M+ property records into a training set the model could actually learn from.',
+      'Wired the whole path together: a REST API serving predictions to a React UI where you explore estimates on a map.',
+    ],
     tags: ['React', 'Python', 'REST API', 'Machine Learning'],
   },
   {
     title: 'Cloud Deployment & Microservices Game Backend',
-    period: 'Mar 2026 - Apr 2026',
-    summary:
-      'A distributed game backend deployed on Google Cloud with separated gameplay, telemetry, and control services.',
-    impact:
-      'Compared multi-VM and Kubernetes-based deployment while benchmarking sync vs async service coupling.',
+    period: 'Mar 2026 – Apr 2026',
+    category: 'Cloud & DevOps',
+    tone: 'cloud',
+    blurb:
+      'A multiplayer game backend deliberately torn into separate services and deployed to Google Cloud, just to see how it holds up under pressure.',
+    highlights: [
+      'Split gameplay, telemetry, and control into independent services so each can scale — and fail — on its own.',
+      'Benchmarked multi-VM against Kubernetes and sync against async coupling to find where the real bottlenecks lived.',
+    ],
     tags: ['GCP', 'Docker', 'FastAPI', 'PostgreSQL', 'Microservices'],
   },
   {
     title: 'Reddit Political Sentiment Analysis',
-    period: 'Sep 2025 - Dec 2025',
-    summary:
-      'A large-scale political sentiment analysis pipeline built on Reddit data to study online sentiment during the 2025 Canada election.',
-    impact:
-      'Reduced 225GB+ raw Reddit data and 1B+ comments into a compact political text dataset using Python streaming, Zstandard, and Apache Spark, then analyzed sentiment trends against polling signals.',
+    period: 'Sep 2025 – Dec 2025',
+    category: 'Data Engineering',
+    tone: 'data',
+    blurb:
+      'Took a firehose of Reddit comments and turned it into a read on how Canadians felt heading into the 2025 election.',
+    highlights: [
+      'Streamed and compressed 225GB+ of raw dumps (1B+ comments) down to a focused dataset with Python, Zstandard, and Spark.',
+      'Scored sentiment with VADER and transformer models, then checked it against real polls to see how closely online mood tracked reality.',
+    ],
     tags: ['Python', 'Apache Spark', 'ETL', 'VADER', 'Transformer'],
   },
   {
     title: 'Course Planner',
-    period: 'Nov 2024 - Jan 2025',
-    summary:
-      'A backend system for student course offering analytics and planning.',
-    impact:
-      'Designed RESTful APIs and modular Java Spring Boot services for querying 10,000+ course records.',
+    period: 'Nov 2024 – Jan 2025',
+    category: 'Backend',
+    tone: 'backend',
+    blurb:
+      'A backend that makes a sprawling university course catalog searchable, so students can plan a semester without losing their minds.',
+    highlights: [
+      'Designed RESTful Spring Boot services that query 10,000+ course offerings without breaking a sweat.',
+      'Kept it modular with a clean MVC split so new query features slot in without rewrites.',
+    ],
     tags: ['Java', 'Spring Boot', 'RESTful API', 'MVC'],
   },
 ]
@@ -126,42 +142,32 @@ function Projects() {
         </h3>
 
         <div className="projects-grid">
-          {projects.map((project) => (
-            <article className="project-card" key={project.title}>
-              <div className="project-card-top">
-                <p className="project-card-period">{project.period}</p>
+          {projects.map((project, index) => (
+            <Reveal key={project.title} delay={index * 80}>
+              <article className={`project-card project-tone-${project.tone}`}>
+                <span className="project-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
 
-                <div className="project-card-links">
-                  {project.codeUrl && (
-                    <a
-                      className="project-link"
-                      href={project.codeUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Code
-                    </a>
-                  )}
-
-                  {project.demoUrl && (
-                    <a
-                      className="project-link"
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Demo
-                    </a>
-                  )}
+                <div className="project-card-head">
+                  <span className="project-period">{project.period}</span>
+                  <span className={`project-cat project-cat-${project.tone}`}>
+                    {project.category}
+                  </span>
                 </div>
-              </div>
 
-              <h4 className="project-card-title">{project.title}</h4>
-              <p className="project-card-summary">{project.summary}</p>
-              <p className="project-card-impact">{project.impact}</p>
+                <h4 className="project-card-title">{project.title}</h4>
+                <p className="project-card-blurb">{project.blurb}</p>
 
-              <Tags tags={project.tags} />
-            </article>
+                <ul className="project-highlights">
+                  {project.highlights.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+
+                <Tags tags={project.tags} />
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>
