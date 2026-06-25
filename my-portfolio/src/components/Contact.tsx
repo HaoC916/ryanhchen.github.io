@@ -98,12 +98,20 @@ function Contact() {
               <span className="contact-now-dot" aria-hidden="true" />
               Available for a chat
             </span>
-            <span className="contact-now-place">
+            <span className="contact-now-meta">
               <FiMapPin />
               Vancouver, Canada
+              <span className="contact-now-sep" aria-hidden="true">·</span>
+              <span className="contact-now-time">{time}</span>
             </span>
           </div>
-          <span className="contact-now-time">{time}</span>
+
+          <a className="contact-hello" href="mailto:hca116@sfu.ca">
+            Say hello
+            <span className="contact-hello-wave" aria-hidden="true">
+              👋
+            </span>
+          </a>
         </div>
 
         <footer className="contact-foot">
