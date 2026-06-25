@@ -6,8 +6,8 @@ function Hero() {
       <div className="hero-glow" aria-hidden="true" />
 
       <h1 className="hero-title">
-        <span className="hero-line">Hi, I am Ryan</span>
-        <span className="hero-line">A Full-Stack Developer</span>
+        <span className="hero-line title-shine">Hi, I am Ryan</span>
+        <span className="hero-line title-shine">A Full-Stack Developer</span>
       </h1>
 
       <div className="hero-actions">

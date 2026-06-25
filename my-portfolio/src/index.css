@@ -65,6 +65,34 @@ button {
   font: inherit;
 }
 
+/* Headline treatment: a subtly drifting dark gradient (with a hint of blue)
+   instead of flat black, for a gentle "breathing" effect. */
+.title-shine {
+  background-image: linear-gradient(
+    100deg,
+    #0f172a 0%,
+    #233247 28%,
+    #1e3a63 50%,
+    #233247 72%,
+    #0f172a 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: title-breathe 9s ease-in-out infinite;
+}
+
+@keyframes title-breathe {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 /* Scroll-reveal used on section headers for a bit of polish on the way down. */
 .reveal {
   opacity: 0;

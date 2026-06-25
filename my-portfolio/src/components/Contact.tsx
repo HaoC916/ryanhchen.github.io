@@ -33,7 +33,7 @@ function Contact() {
       <div className="contact-inner">
         <Reveal>
           <p className="contact-kicker">Get in touch</p>
-          <h2 className="contact-title">Let&rsquo;s connect.</h2>
+          <h2 className="contact-title title-shine">Let&rsquo;s connect.</h2>
           <p className="contact-description">
             I&rsquo;m currently working as a full-stack developer and always happy
             to chat about web &amp; mobile projects, full-stack engineering, or

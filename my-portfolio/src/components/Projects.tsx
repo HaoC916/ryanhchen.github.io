@@ -96,7 +96,7 @@ function Projects() {
     <section className="projects" id="projects">
       <Reveal>
         <div className="projects-header">
-          <h2 className="projects-title">Work &amp; Projects</h2>
+          <h2 className="projects-title title-shine">Work &amp; Projects</h2>
         </div>
       </Reveal>
 

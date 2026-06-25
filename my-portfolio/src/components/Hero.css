@@ -59,8 +59,10 @@
   /* Min kept low enough that "A Full-Stack Developer" stays on one line down
      to ~320px wide screens without clipping. */
   font-size: clamp(26px, 7.4vw, 90px);
-  line-height: 1.05;
-  letter-spacing: -0.045em;
+  line-height: 1.06;
+  /* Tight letters but a touch more room between words. */
+  letter-spacing: -0.03em;
+  word-spacing: 0.06em;
   font-weight: 800;
   color: #111827;
 }

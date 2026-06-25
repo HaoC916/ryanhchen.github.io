@@ -118,7 +118,7 @@ function Stack() {
     <section className="stack" id="stack">
       <Reveal>
         <div className="stack-header">
-          <h2 className="stack-title">Tech Stack</h2>
+          <h2 className="stack-title title-shine">Tech Stack</h2>
         </div>
       </Reveal>
 
