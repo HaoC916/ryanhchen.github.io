@@ -26,14 +26,15 @@ html {
   overflow-x: clip;
 }
 
-/* Offset anchor jumps so the sticky navbar never covers section titles. */
+/* Offset anchor jumps so the sticky navbar clears section titles, with only a
+   small gap (≈ navbar height). */
 section[id] {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 78px;
 }
 
 @media (max-width: 700px) {
   section[id] {
-    scroll-margin-top: 132px;
+    scroll-margin-top: 96px;
   }
 }
 
