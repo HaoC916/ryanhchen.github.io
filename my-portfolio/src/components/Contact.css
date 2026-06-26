@@ -325,13 +325,37 @@
 }
 
 @media (max-width: 560px) {
-  /* Full-width card that stacks status above the button (no overlap). */
+  /* Full-width card; keep the button to the RIGHT of the status/location,
+     matched to their height (drop ", Canada" to make room). */
   .contact-now {
     align-self: stretch;
     width: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px 18px;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 12px;
+    padding: 13px 13px 13px 18px;
+  }
+
+  .contact-now-main {
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .contact-now-status {
+    font-size: 13px;
+  }
+
+  .contact-now-meta {
+    font-size: 12.5px;
+  }
+
+  .contact-now-region {
+    display: none;
+  }
+
+  .contact-hello {
+    flex-shrink: 0;
+    padding: 0 16px;
+    font-size: 14px;
   }
 }

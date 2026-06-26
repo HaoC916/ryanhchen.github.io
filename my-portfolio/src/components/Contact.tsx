@@ -49,7 +49,7 @@ function Contact() {
             </span>
             <span className="contact-now-meta">
               <FiMapPin />
-              Vancouver, Canada
+              Vancouver<span className="contact-now-region">, Canada</span>
               <span className="contact-now-sep" aria-hidden="true">·</span>
               <span className="contact-now-time">{time}</span>
             </span>
