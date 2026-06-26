@@ -1,21 +1,15 @@
 import './Projects.css'
+import { Link } from 'react-router-dom'
+import { FiArrowUpRight } from 'react-icons/fi'
 import Reveal from './Reveal'
+import Tags from './Tags'
+import { projects } from '../data/projects'
 
 type Experience = {
   role: string
   period: string
   summary: string
   impact: string
-  tags: string[]
-}
-
-type Project = {
-  title: string
-  period: string
-  category: string
-  tone: string
-  blurb: string
-  highlights: string[]
   tags: string[]
 }
 
@@ -39,73 +33,6 @@ const experience: Experience[] = [
     tags: ['HTML/CSS', 'JavaScript', 'Shopify Liquid', 'Python'],
   },
 ]
-
-const projects: Project[] = [
-  {
-    title: 'Vancouver Land Value Prediction System',
-    period: 'Jan 2026 – Apr 2026',
-    category: 'Full-Stack · ML',
-    tone: 'fullstack',
-    blurb:
-      'Punch in a Vancouver address and get back what the land underneath is likely worth — backed by real municipal data and a model that learned from it.',
-    highlights: [
-      'Cleaned and reshaped 1.5M+ property records into a training set the model could actually learn from.',
-      'Wired the whole path together: a REST API serving predictions to a React UI where you explore estimates on a map.',
-    ],
-    tags: ['React', 'Python', 'REST API', 'Machine Learning'],
-  },
-  {
-    title: 'Cloud Deployment & Microservices Game Backend',
-    period: 'Mar 2026 – Apr 2026',
-    category: 'Cloud & DevOps',
-    tone: 'cloud',
-    blurb:
-      'A multiplayer game backend deliberately torn into separate services and deployed to Google Cloud, just to see how it holds up under pressure.',
-    highlights: [
-      'Split gameplay, telemetry, and control into independent services so each can scale — and fail — on its own.',
-      'Benchmarked multi-VM against Kubernetes and sync against async coupling to find where the real bottlenecks lived.',
-    ],
-    tags: ['GCP', 'Docker', 'FastAPI', 'PostgreSQL', 'Microservices'],
-  },
-  {
-    title: 'Reddit Political Sentiment Analysis',
-    period: 'Sep 2025 – Dec 2025',
-    category: 'Data Engineering',
-    tone: 'data',
-    blurb:
-      'Took a firehose of Reddit comments and turned it into a read on how Canadians felt heading into the 2025 election.',
-    highlights: [
-      'Streamed and compressed 225GB+ of raw dumps (1B+ comments) down to a focused dataset with Python, Zstandard, and Spark.',
-      'Scored sentiment with VADER and transformer models, then checked it against real polls to see how closely online mood tracked reality.',
-    ],
-    tags: ['Python', 'Apache Spark', 'ETL', 'VADER', 'Transformer'],
-  },
-  {
-    title: 'Course Planner',
-    period: 'Nov 2024 – Jan 2025',
-    category: 'Backend',
-    tone: 'backend',
-    blurb:
-      'A backend that makes a sprawling university course catalog searchable, so students can plan a semester without losing their minds.',
-    highlights: [
-      'Designed RESTful Spring Boot services that query 10,000+ course offerings without breaking a sweat.',
-      'Kept it modular with a clean MVC split so new query features slot in without rewrites.',
-    ],
-    tags: ['Java', 'Spring Boot', 'RESTful API', 'MVC'],
-  },
-]
-
-function Tags({ tags }: { tags: string[] }) {
-  return (
-    <div className="project-tags">
-      {tags.map((tag) => (
-        <span className="project-tag" key={tag}>
-          {tag}
-        </span>
-      ))}
-    </div>
-  )
-}
 
 function Projects() {
   return (
@@ -143,8 +70,12 @@ function Projects() {
 
         <div className="projects-grid">
           {projects.map((project, index) => (
-            <Reveal key={project.title} delay={index * 80}>
-              <article className={`project-card project-tone-${project.tone}`}>
+            <Reveal key={project.slug} delay={index * 80}>
+              <Link
+                className={`project-card project-tone-${project.tone}`}
+                to={`/projects/${project.slug}`}
+                aria-label={`${project.title} — view details`}
+              >
                 <span className="project-index" aria-hidden="true">
                   {String(index + 1).padStart(2, '0')}
                 </span>
@@ -165,8 +96,14 @@ function Projects() {
                   ))}
                 </ul>
 
-                <Tags tags={project.tags} />
-              </article>
+                <div className="project-card-foot">
+                  <Tags tags={project.tags} />
+                  <span className="project-card-cta" aria-hidden="true">
+                    View project
+                    <FiArrowUpRight />
+                  </span>
+                </div>
+              </Link>
             </Reveal>
           ))}
         </div>
