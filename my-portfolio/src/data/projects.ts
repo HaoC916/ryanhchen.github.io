@@ -21,21 +21,25 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'vancouver-land-value',
-    title: 'Vancouver Land Value Prediction System',
+    title: 'Vancouver Property Value Prediction System',
     period: 'Jan 2026 – Apr 2026',
     category: 'Full-Stack · ML',
     tone: 'fullstack',
     blurb:
-      'Punch in a Vancouver address and get back what the land underneath is likely worth — backed by real municipal data and a model that learned from it.',
+      'Type a Vancouver address — down to a specific condo unit — and get a grounded estimate of the property\'s assessed value, backed by real municipal data.',
     highlights: [
-      'Cleaned and reshaped 1.5M+ property records into a training set the model could actually learn from.',
-      'Wired the whole path together: a REST API serving predictions to a React UI where you explore estimates on a map.',
+      'Cleaned and reshaped 1.5M+ public property records into a training set the model could actually learn from.',
+      'Predicts total property value (land + building), and tells individual condo units apart using each unit\'s own assessment history — median error around 6%.',
+      'Address-driven UI — a generative chat or a search form — talking to a FastAPI model server, both deployed to the cloud as a live demo.',
     ],
-    tags: ['React', 'Python', 'REST API', 'Machine Learning'],
+    tags: ['React', 'Python', 'FastAPI', 'Machine Learning', 'Docker'],
     overview: [
-      'Land in Vancouver is famously hard to price, so I built a tool that takes an address and returns a grounded estimate of what the land underneath is worth — separate from whatever sits on top of it.',
-      'The hard part was the data: over 1.5 million public property records, full of gaps and inconsistencies, that had to be cleaned and reshaped before a model could make sense of them. From there I trained the predictor, wrapped it in a REST API, and built a React front-end with a map so you can explore estimates visually instead of reading a table.',
+      'Property prices in Vancouver are famously hard to pin down, so I built a tool that takes an address and returns a grounded estimate of the total assessed value — land plus the building on top — not just the land underneath.',
+      'The hard part was the data: over 1.5 million public property records, full of gaps and inconsistencies, that had to be cleaned and reshaped before a model could make sense of them. The trickiest case was condos, where every unit in a building shares the same address, zoning, and age — so the only thing that tells them apart is each unit\'s own prior assessment. Leaning on that signal brought the median error down to around 6%.',
+      'On top of the model I built a FastAPI service and a React front-end with two ways in: a generative chat that asks for an address (and a unit number, if it is a building) and types its answer back, and a plain search form. Both the API and the UI are deployed to the cloud, so it is a real working demo rather than a screenshot.',
     ],
+    repoUrl: 'https://github.com/HaoC916/Vancouver-Land-Value-Prediction-System',
+    demoUrl: 'https://hello-ryan-vancouver-property-value.static.hf.space',
   },
   {
     slug: 'microservices-game-backend',

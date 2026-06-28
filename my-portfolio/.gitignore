@@ -27,3 +27,6 @@ dist-ssr
 notes/
 
 .vite/
+# local working / maintenance dirs (kept out of the public repo)
+.claude/
+docs/
