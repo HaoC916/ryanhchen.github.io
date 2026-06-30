@@ -1,7 +1,6 @@
 import './Stack.css'
 import { useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
-import Reveal from './Reveal'
 
 import {
   SiPython,
@@ -116,12 +115,6 @@ function Stack() {
 
   return (
     <section className="stack" id="stack">
-      <Reveal>
-        <div className="stack-header">
-          <h2 className="stack-title title-shine">Tech Stack</h2>
-        </div>
-      </Reveal>
-
       <div className="stack-marquee">
         <div className="stack-tilt" ref={tiltRef}>
           <Row items={stackItems} />

@@ -23,6 +23,12 @@ function ProjectDetail() {
     }
   }, [project])
 
+  // Detail pages keep their original light design regardless of the site-wide
+  // light/dark preference (which lives on the home page).
+  useEffect(() => {
+    document.documentElement.dataset.theme = 'light'
+  }, [])
+
   if (!project) {
     return <Navigate to="/" replace />
   }

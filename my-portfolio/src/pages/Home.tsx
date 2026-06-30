@@ -49,8 +49,10 @@ function Home() {
       {!introDone && <Intro onDone={() => setIntroDone(true)} />}
       <Navbar />
       <main className={introDone ? 'is-ready' : ''}>
-        <Hero />
-        <Stack />
+        <div className="home-hero">
+          <Hero />
+          <Stack />
+        </div>
         <Projects />
         <Contact />
       </main>
