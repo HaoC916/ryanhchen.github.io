@@ -196,20 +196,24 @@
      buttons down together. */
   .hero-actions {
     margin-top: 44px;
+    /* Slightly tighter gap buys a little extra width for the two buttons to
+       stay on one row down to narrow phones (see .hero-button below). */
+    gap: 10px;
+  }
+
+  /* Tighter horizontal padding keeps "View Projects" and "Get in Touch" side
+     by side down to ~320px wide phones instead of wrapping to two rows —
+     measured against real rendered button widths, not estimated. flex-wrap
+     stays on the base rule as a graceful fallback for anything narrower. */
+  .hero-button {
+    padding: 16px 18px;
+    white-space: nowrap;
   }
 }
 
-@media (max-width: 560px) {
-  /* Bigger, bolder headline on phones than the desktop-tuned clamp gives at
-     this width — but capped well short of the previous 60px, which (as 3
-     wrapped lines) ran taller than the safe area on real devices and let the
-     next section peek in underneath. Allowed to wrap instead of staying tiny
-     just to keep both lines on one row. */
-  .hero-title {
-    font-size: clamp(34px, 10vw, 48px);
-  }
-
-  .hero-line {
-    white-space: normal;
-  }
-}
+/* Deliberately no override of .hero-title's font-size or .hero-line's
+   nowrap below 900px: the base clamp(26px, 7.4vw, 90px) was already tuned
+   (see its comment) to keep "A Full-Stack Developer" on one line down to
+   ~320px wide phones — confirmed by direct measurement of the rendered
+   text. An earlier attempt to enlarge it past that let the line wrap and
+   also made the section tall enough to overflow the safe mobile viewport. */

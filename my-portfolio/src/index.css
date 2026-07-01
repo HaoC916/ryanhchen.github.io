@@ -38,12 +38,15 @@ section[id] {
 }
 
 @media (max-width: 700px) {
+  /* The stacked two-row mobile navbar actually renders at ~72px, not 96 —
+     that mismatch left a ~24px gap of blank space above whichever section
+     you jumped to via the nav links (most visible on Contact). */
   section[id] {
-    scroll-margin-top: 96px;
+    scroll-margin-top: 72px;
   }
 
   .projects-group[id] {
-    scroll-margin-top: 122px;
+    scroll-margin-top: 98px;
   }
 }
 
