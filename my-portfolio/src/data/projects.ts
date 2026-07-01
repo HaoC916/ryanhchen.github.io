@@ -71,16 +71,22 @@ export const projects: Project[] = [
     category: 'Data Engineering',
     tone: 'data',
     blurb:
-      'Took a firehose of Reddit comments and turned it into a read on how Canadians felt heading into the 2025 election.',
+      'Filtered 1.27 billion raw Reddit comments down to the ones actually about federal politics, then checked whether the internet\'s mood tracked the real polls heading into the 2025 Canadian election.',
     highlights: [
-      'Streamed and compressed 225GB+ of raw dumps (1B+ comments) down to a focused dataset with Python, Zstandard, and Spark.',
-      'Scored sentiment with VADER and transformer models, then checked it against real polls to see how closely online mood tracked reality.',
+      'Spark ETL pipeline that scans 1.27B raw Reddit comments across four months of dumps and extracts the 2.12M sentences that specifically target the Liberals, Conservatives, or NDP.',
+      'Scored every sentence two ways — VADER as a baseline, a fine-tuned RoBERTa transformer as the real signal — then aggregated into weekly and daily time series per party.',
+      'Correlated sentiment against real polling averages through election day: weekly transformer sentiment tracks the polls closely for the Liberals (r = 0.81) and Conservatives (r = -0.68) — but that signal all but disappears at daily resolution, which says more about Reddit noise than about the model.',
+      'Built a static results explorer on the real aggregated output (no reconstruction) — toggle party, model, and timescale yourself.',
     ],
-    tags: ['Python', 'Apache Spark', 'ETL', 'VADER', 'Transformer'],
+    tags: ['Python', 'Apache Spark', 'PyTorch', 'VADER', 'RoBERTa', 'Pandas'],
     overview: [
-      'The idea was to see whether the mood on Reddit lined up with how Canadians actually voted in the 2025 election — which first meant taming an enormous amount of raw data.',
-      'I built a streaming ETL pipeline that pulled 225GB+ of dumps (over a billion comments) down to a focused political dataset using Python, Zstandard, and Apache Spark. Then I scored sentiment with both VADER and transformer models and compared the trends against real polling, so the conclusions rested on a check against reality rather than vibes.',
+      'For a group project with Luna Sang and Zili Ding (CMPT 732, Big Data), we asked a fairly direct question: did Reddit\'s mood about each federal party actually line up with how Canadians were polling ahead of the 2025 election? Answering it honestly meant not cherry-picking a convenient sample — so the pipeline starts from all four months of raw Reddit dumps, about 1.27 billion comments, and works down from there.',
+      'A Spark ETL pipeline filters and joins comments with their submission titles, then a keyword pass extracts the sentences that actually target a party (not just mention Canada in passing) — 2.12 million of them survive. Each one gets scored twice: VADER as a cheap baseline, and CardiffNLP\'s RoBERTa transformer as the model that actually has to earn its keep. Both get aggregated into weekly and daily sentiment series per party and merged against real public polling averages.',
+      'The honest result is a split decision. Aggregated by week, transformer sentiment tracks the polls reasonably well for two of three parties — Liberal support and Reddit positivity move together (Pearson r = 0.81), Conservative support moves opposite it (r = -0.68) — but NDP is weaker (r = -0.41), and at daily resolution the correlation for every party collapses toward zero. Reddit chatter is just too noisy day-to-day to read like a poll; you need a week of it before the signal is worth trusting.',
+      'Rather than ship the old Streamlit dashboard as-is, I rebuilt the same analysis as a static React results explorer fed directly by the pipeline\'s real output — the weekly/daily sentiment files and the polling averages, no live backend, no reconstructed numbers. It deploys as a static site, same as the other projects here.',
     ],
+    repoUrl: 'https://github.com/HaoC916/2025-Canada-Election-Sentimen',
+    demoUrl: 'https://haoc916.github.io/2025-Canada-Election-Sentimen/',
   },
   {
     slug: 'course-planner',
