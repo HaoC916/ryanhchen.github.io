@@ -1,9 +1,10 @@
 import './ProjectDetail.css'
 import { useEffect } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
-import { FiArrowLeft, FiArrowUpRight } from 'react-icons/fi'
+import { FiArrowLeft, FiArrowUpRight, FiMoon, FiSun } from 'react-icons/fi'
 import { getProject } from '../data/projects'
 import Tags from '../components/Tags'
+import { useSiteTheme } from '../hooks/useSiteTheme'
 
 function goHome(section: 'top' | 'projects') {
   sessionStorage.setItem('returnTo', section)
@@ -12,6 +13,7 @@ function goHome(section: 'top' | 'projects') {
 function ProjectDetail() {
   const { slug } = useParams()
   const project = getProject(slug)
+  const { dark, toggle } = useSiteTheme()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -23,12 +25,6 @@ function ProjectDetail() {
     }
   }, [project])
 
-  // Detail pages keep their original light design regardless of the site-wide
-  // light/dark preference (which lives on the home page).
-  useEffect(() => {
-    document.documentElement.dataset.theme = 'light'
-  }, [])
-
   if (!project) {
     return <Navigate to="/" replace />
   }
@@ -39,10 +35,20 @@ function ProjectDetail() {
         <Link className="detail-brand" to="/" onClick={() => goHome('top')}>
           Ryan Chen
         </Link>
-        <Link className="detail-back" to="/" onClick={() => goHome('projects')}>
-          <FiArrowLeft />
-          Back to projects
-        </Link>
+        <div className="detail-bar-actions">
+          <Link className="detail-back" to="/" onClick={() => goHome('projects')}>
+            <FiArrowLeft />
+            Back to projects
+          </Link>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggle}
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {dark ? <FiSun /> : <FiMoon />}
+          </button>
+        </div>
       </header>
 
       <main className="detail-main">

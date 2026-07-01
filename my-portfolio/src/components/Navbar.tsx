@@ -1,20 +1,10 @@
 import './Navbar.css'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { FiSun, FiMoon } from 'react-icons/fi'
-
-type Theme = 'light' | 'dark'
-
-function getInitialTheme(): Theme {
-  if (typeof localStorage !== 'undefined') {
-    const stored = localStorage.getItem('site-theme')
-    if (stored === 'light' || stored === 'dark') return stored
-  }
-  return 'light'
-}
+import { useSiteTheme } from '../hooks/useSiteTheme'
 
 function Navbar() {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
-  const dark = theme === 'dark'
+  const { dark, toggle } = useSiteTheme()
   const [greeting, setGreeting] = useState(false)
   const navRef = useRef<HTMLElement>(null)
 
@@ -33,15 +23,6 @@ function Navbar() {
     ro.observe(el)
     return () => ro.disconnect()
   }, [])
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme
-    try {
-      localStorage.setItem('site-theme', theme)
-    } catch {
-      // ignore storage failures
-    }
-  }, [theme])
 
   // Cycle the brand between "Ryan Chen" and the greeting on its own, on both
   // desktop and mobile (hover still shows the greeting immediately too).
@@ -74,7 +55,7 @@ function Navbar() {
           <button
             type="button"
             className="theme-toggle"
-            onClick={() => setTheme(dark ? 'light' : 'dark')}
+            onClick={toggle}
             aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {dark ? <FiSun /> : <FiMoon />}

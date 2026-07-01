@@ -49,6 +49,14 @@
   text-decoration: none;
 }
 
+/* Right side of the top bar: back link + theme toggle (the toggle reuses the
+   home navbar's .theme-toggle styles — Navbar.css is bundled globally). */
+.detail-bar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .detail-back {
   display: inline-flex;
   align-items: center;
