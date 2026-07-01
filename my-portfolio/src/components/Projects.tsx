@@ -21,7 +21,7 @@ const experience: Experience[] = [
       'Shipping production features across web and mobile alongside the engineering team — the kind real users actually touch.',
     impact:
       'Working end to end: React and React Native on the front, Node.js and Express APIs on the back, PostgreSQL underneath.',
-    tags: ['React', 'React Native', 'Node.js', 'Express.js', 'PostgreSQL'],
+    tags: ['React Native', 'Node.js', 'Express.js', 'PostgreSQL'],
   },
   {
     role: 'E-commerce Developer',
@@ -81,7 +81,6 @@ function Projects() {
                 </span>
 
                 <div className="project-card-head">
-                  <span className="project-period">{project.period}</span>
                   <span className={`project-cat project-cat-${project.tone}`}>
                     {project.category}
                   </span>
