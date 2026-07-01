@@ -1,7 +1,7 @@
 import './ProjectDetail.css'
 import { useEffect } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
-import { FiArrowLeft, FiArrowUpRight, FiGithub } from 'react-icons/fi'
+import { FiArrowLeft, FiArrowUpRight } from 'react-icons/fi'
 import { getProject } from '../data/projects'
 import Tags from '../components/Tags'
 
@@ -58,30 +58,17 @@ function ProjectDetail() {
         <h1 className="detail-title title-shine">{project.title}</h1>
         <p className="detail-blurb">{project.blurb}</p>
 
-        {(project.repoUrl || project.demoUrl) && (
+        {project.demoUrl && (
           <div className="detail-actions">
-            {project.repoUrl && (
-              <a
-                className="detail-btn detail-btn-primary"
-                href={project.repoUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FiGithub />
-                View code
-              </a>
-            )}
-            {project.demoUrl && (
-              <a
-                className="detail-btn detail-btn-secondary"
-                href={project.demoUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Live demo
-                <FiArrowUpRight />
-              </a>
-            )}
+            <a
+              className="detail-btn detail-btn-primary"
+              href={project.demoUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Live demo
+              <FiArrowUpRight />
+            </a>
           </div>
         )}
 

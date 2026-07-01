@@ -9,7 +9,7 @@ function getInitialTheme(): Theme {
     const stored = localStorage.getItem('site-theme')
     if (stored === 'light' || stored === 'dark') return stored
   }
-  return 'dark'
+  return 'light'
 }
 
 function Navbar() {
@@ -31,7 +31,8 @@ function Navbar() {
         <a className="navbar-brand" href="#top" aria-label="Ryan Chen — back to top">
           <span className="brand-word brand-word-name">Ryan Chen</span>
           <span className="brand-word brand-word-hi" aria-hidden="true">
-            Hello!
+            <span className="brand-hi-text">Hello! Nice to see you here</span>
+            <span className="brand-hi-emoji">&nbsp;😊</span>
           </span>
         </a>
 

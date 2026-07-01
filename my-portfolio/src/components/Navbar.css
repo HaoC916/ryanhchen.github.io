@@ -53,8 +53,16 @@
   position: absolute;
   left: 0;
   top: 0;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
   opacity: 0;
   transform: translateY(0.5em) rotate(-6deg);
+}
+
+/* Only the words get the clipped rainbow; the emoji stays a normal color glyph
+   (a transparent text-fill would otherwise hide it). */
+.brand-hi-text {
   background-image: linear-gradient(
     90deg,
     #f97316,
@@ -79,6 +87,9 @@
 .navbar-brand:hover .brand-word-hi {
   opacity: 1;
   transform: translateY(0) rotate(0deg);
+}
+
+.navbar-brand:hover .brand-hi-text {
   animation: brand-rainbow 2.6s linear infinite;
 }
 
@@ -120,7 +131,7 @@
   .brand-word {
     transition: none;
   }
-  .navbar-brand:hover .brand-word-hi {
+  .navbar-brand:hover .brand-hi-text {
     animation: none;
   }
 }
