@@ -15,6 +15,7 @@ function getInitialTheme(): Theme {
 function Navbar() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme)
   const dark = theme === 'dark'
+  const [greeting, setGreeting] = useState(false)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -25,10 +26,22 @@ function Navbar() {
     }
   }, [theme])
 
+  // Cycle the brand between "Ryan Chen" and the greeting on its own, on both
+  // desktop and mobile (hover still shows the greeting immediately too).
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const id = setInterval(() => setGreeting((v) => !v), 5000)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <header className="navbar">
       <div className="navbar-inner">
-        <a className="navbar-brand" href="#top" aria-label="Ryan Chen — back to top">
+        <a
+          className={`navbar-brand${greeting ? ' is-greeting' : ''}`}
+          href="#top"
+          aria-label="Ryan Chen — back to top"
+        >
           <span className="brand-word brand-word-name">Ryan Chen</span>
           <span className="brand-word brand-word-hi" aria-hidden="true">
             <span className="brand-hi-text">Hello! Nice to see you here</span>

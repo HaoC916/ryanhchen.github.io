@@ -170,7 +170,32 @@
 }
 
 @media (max-width: 900px) {
+  /* Let the hero content grow to fill the space above the marquee and center
+     itself there, instead of sitting stuck at the top with a dead gap below
+     the buttons. */
+  .home-hero .stack {
+    margin-block: 0;
+  }
+
   .hero {
-    padding: clamp(40px, 9vh, 96px) 20px 8px;
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 24px 20px;
+  }
+
+  .hero-actions {
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 560px) {
+  /* Bigger, bolder headline on phones — allow it to wrap onto a second line
+     rather than staying tiny just to keep both lines on one row. */
+  .hero-title {
+    font-size: clamp(40px, 12vw, 60px);
+  }
+
+  .hero-line {
+    white-space: normal;
   }
 }

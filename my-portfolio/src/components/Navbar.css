@@ -49,15 +49,17 @@
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Centered on the name's midpoint (not left-anchored) so it reads centered
+   regardless of how much wider the greeting is than "Ryan Chen". */
 .brand-word-hi {
   position: absolute;
-  left: 0;
+  left: 50%;
   top: 0;
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
   opacity: 0;
-  transform: translateY(0.5em) rotate(-6deg);
+  transform: translate(-50%, 0.5em) rotate(-6deg);
 }
 
 /* Only the words get the clipped rainbow; the emoji stays a normal color glyph
@@ -79,17 +81,20 @@
   color: transparent;
 }
 
-.navbar-brand:hover .brand-word-name {
+.navbar-brand:hover .brand-word-name,
+.navbar-brand.is-greeting .brand-word-name {
   opacity: 0;
   transform: translateY(-0.5em);
 }
 
-.navbar-brand:hover .brand-word-hi {
+.navbar-brand:hover .brand-word-hi,
+.navbar-brand.is-greeting .brand-word-hi {
   opacity: 1;
-  transform: translateY(0) rotate(0deg);
+  transform: translate(-50%, 0) rotate(0deg);
 }
 
-.navbar-brand:hover .brand-hi-text {
+.navbar-brand:hover .brand-hi-text,
+.navbar-brand.is-greeting .brand-hi-text {
   animation: brand-rainbow 2.6s linear infinite;
 }
 
@@ -131,7 +136,8 @@
   .brand-word {
     transition: none;
   }
-  .navbar-brand:hover .brand-hi-text {
+  .navbar-brand:hover .brand-hi-text,
+  .navbar-brand.is-greeting .brand-hi-text {
     animation: none;
   }
 }
@@ -174,6 +180,8 @@
   }
 
   .navbar-links {
+    position: relative;
+    width: 100%;
     gap: 2px;
     flex-wrap: nowrap;
     justify-content: center;
@@ -182,5 +190,19 @@
   .navbar-links a {
     padding: 6px 10px;
     font-size: 13px;
+  }
+
+  /* Pull the toggle out of the centered link cluster and pin it to the right
+     edge, instead of it sitting awkwardly inline after "Contact". */
+  .theme-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin: 0;
+    transform: translateY(-50%);
+  }
+
+  .theme-toggle:active {
+    transform: translateY(-50%) scale(0.94);
   }
 }
