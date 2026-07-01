@@ -52,7 +52,6 @@ function ProjectDetail() {
           <span className={`project-cat project-cat-${project.tone}`}>
             {project.category}
           </span>
-          <span className="detail-period">{project.period}</span>
         </p>
 
         <h1 className="detail-title title-shine">{project.title}</h1>
