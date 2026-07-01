@@ -6,8 +6,11 @@ import { getProject } from '../data/projects'
 import Tags from '../components/Tags'
 import { useSiteTheme } from '../hooks/useSiteTheme'
 
-function goHome(section: 'top' | 'projects') {
-  sessionStorage.setItem('returnTo', section)
+/* target is an element id on the home page ('top' means plain top). Back links
+   pass the specific project card's id, so returning lands on the card you
+   entered from rather than the top of the Projects section. */
+function goHome(target: string) {
+  sessionStorage.setItem('returnTo', target)
 }
 
 function ProjectDetail() {
@@ -36,7 +39,11 @@ function ProjectDetail() {
           Ryan Chen
         </Link>
         <div className="detail-bar-actions">
-          <Link className="detail-back" to="/" onClick={() => goHome('projects')}>
+          <Link
+            className="detail-back"
+            to="/"
+            onClick={() => goHome(`project-${project.slug}`)}
+          >
             <FiArrowLeft />
             Back to projects
           </Link>
@@ -100,7 +107,11 @@ function ProjectDetail() {
           <Tags tags={project.tags} />
         </section>
 
-        <Link className="detail-back detail-back-foot" to="/" onClick={() => goHome('projects')}>
+        <Link
+          className="detail-back detail-back-foot"
+          to="/"
+          onClick={() => goHome(`project-${project.slug}`)}
+        >
           <FiArrowLeft />
           Back to all projects
         </Link>

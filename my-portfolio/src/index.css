@@ -37,6 +37,12 @@ section[id] {
   scroll-margin-top: 104px;
 }
 
+/* Individual project cards are jump targets too (returning from a detail
+   page lands on the card you came from). */
+.project-card[id] {
+  scroll-margin-top: 90px;
+}
+
 @media (max-width: 700px) {
   /* The stacked two-row mobile navbar actually renders at ~72px, not 96 —
      that mismatch left a ~24px gap of blank space above whichever section
@@ -47,6 +53,10 @@ section[id] {
 
   .projects-group[id] {
     scroll-margin-top: 98px;
+  }
+
+  .project-card[id] {
+    scroll-margin-top: 84px;
   }
 }
 

@@ -72,6 +72,7 @@ function Projects() {
           {projects.map((project, index) => (
             <Reveal key={project.slug} delay={index * 80}>
               <Link
+                id={`project-${project.slug}`}
                 className={`project-card project-tone-${project.tone}`}
                 to={`/projects/${project.slug}`}
                 aria-label={`${project.title} — view details`}
