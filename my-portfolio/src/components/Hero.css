@@ -4,9 +4,17 @@
   display: flex;
   flex-direction: column;
   /* Subtract the sticky navbar so the hero + marquee fill exactly the visible
-     area below it (otherwise the first screen runs past the viewport bottom). */
-  --nav-h: 78px;
-  min-height: calc(100svh - var(--nav-h));
+     area below it (otherwise the first screen runs past the viewport bottom).
+     --nav-h is measured live from the navbar's real rendered height (see
+     Navbar.tsx) since it differs between the single-row desktop layout and
+     the stacked two-row mobile one; 78px is only a pre-JS fallback.
+     A hard height (not min-height) + clipping is a safety net on top of that:
+     mobile Safari's collapsible toolbar means `svh` can end up smaller in
+     practice than any dev-tool viewport preview shows, so if the content
+     ever runs a touch tall, it's clipped here instead of pushing
+     "Work & Projects" into view. */
+  height: calc(100svh - var(--nav-h, 78px));
+  overflow: hidden;
 }
 
 /* Center the marquee in the space below the hero so the gap above it (from the
@@ -180,19 +188,25 @@
   .hero {
     flex: 1 1 auto;
     justify-content: center;
-    padding: 24px 20px;
+    padding: 14px 20px;
   }
 
+  /* A bit more room between the headline and the buttons than desktop —
+     centering the whole (now taller) block pushes the title up and the
+     buttons down together. */
   .hero-actions {
-    margin-top: 36px;
+    margin-top: 44px;
   }
 }
 
 @media (max-width: 560px) {
-  /* Bigger, bolder headline on phones — allow it to wrap onto a second line
-     rather than staying tiny just to keep both lines on one row. */
+  /* Bigger, bolder headline on phones than the desktop-tuned clamp gives at
+     this width — but capped well short of the previous 60px, which (as 3
+     wrapped lines) ran taller than the safe area on real devices and let the
+     next section peek in underneath. Allowed to wrap instead of staying tiny
+     just to keep both lines on one row. */
   .hero-title {
-    font-size: clamp(40px, 12vw, 60px);
+    font-size: clamp(34px, 10vw, 48px);
   }
 
   .hero-line {

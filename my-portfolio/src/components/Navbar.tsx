@@ -1,5 +1,5 @@
 import './Navbar.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { FiSun, FiMoon } from 'react-icons/fi'
 
 type Theme = 'light' | 'dark'
@@ -16,6 +16,23 @@ function Navbar() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme)
   const dark = theme === 'dark'
   const [greeting, setGreeting] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
+
+  // Measure the navbar's real rendered height (it changes between the
+  // single-row desktop layout and the stacked two-row mobile layout) so the
+  // home first screen can size itself exactly, instead of guessing a fixed
+  // px value that drifts a few pixels and lets the next section peek in.
+  useLayoutEffect(() => {
+    const el = navRef.current
+    if (!el) return
+    const setVar = () => {
+      document.documentElement.style.setProperty('--nav-h', `${el.offsetHeight}px`)
+    }
+    setVar()
+    const ro = new ResizeObserver(setVar)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -35,7 +52,7 @@ function Navbar() {
   }, [])
 
   return (
-    <header className="navbar">
+    <header className="navbar" ref={navRef}>
       <div className="navbar-inner">
         <a
           className={`navbar-brand${greeting ? ' is-greeting' : ''}`}
