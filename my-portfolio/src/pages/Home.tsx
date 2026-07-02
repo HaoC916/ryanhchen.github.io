@@ -25,16 +25,34 @@ function Home() {
     const returnTo = sessionStorage.getItem('returnTo')
     if (returnTo) {
       sessionStorage.removeItem('returnTo')
-      requestAnimationFrame(() => {
+      // Jump instantly (it's a "back to where I was" restore, not an anchor
+      // glide). Compute the target from the offsetTop chain, not
+      // scrollIntoView: the card is mid-Reveal (translateY(22px)) when we
+      // arrive, and scrollIntoView aims at that transformed position —
+      // landing the card ~22px too high, flush against the navbar.
+      // offsetTop ignores transforms, so this lands on the settled layout.
+      const jump = () => {
         if (returnTo !== 'top') {
           const el = document.getElementById(returnTo)
-          if (el) {
-            el.scrollIntoView()
+          if (el instanceof HTMLElement) {
+            const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0
+            let y = 0
+            let node: HTMLElement | null = el
+            while (node) {
+              y += node.offsetTop
+              node = node.offsetParent instanceof HTMLElement ? node.offsetParent : null
+            }
+            window.scrollTo({ top: y - margin, behavior: 'instant' })
             return
           }
         }
         window.scrollTo(0, 0)
-      })
+      }
+      requestAnimationFrame(jump)
+      // One-shot, deliberately not cleared: StrictMode's dev double-mount
+      // would cancel it before it can run (the flag is already consumed, so
+      // the remount can't reschedule it).
+      setTimeout(jump, 250)
       return
     }
 

@@ -38,9 +38,11 @@ section[id] {
 }
 
 /* Individual project cards are jump targets too (returning from a detail
-   page lands on the card you came from). */
+   page lands on the card you came from). Sized off the live-measured navbar
+   height plus a small breathing gap so the card doesn't sit flush against
+   the bar at any breakpoint. */
 .project-card[id] {
-  scroll-margin-top: 90px;
+  scroll-margin-top: calc(var(--nav-h, 78px) + 28px);
 }
 
 @media (max-width: 700px) {
@@ -53,10 +55,6 @@ section[id] {
 
   .projects-group[id] {
     scroll-margin-top: 98px;
-  }
-
-  .project-card[id] {
-    scroll-margin-top: 84px;
   }
 }
 
